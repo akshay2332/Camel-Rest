@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hdfc-global-api-webapp:war">
+    <output-path>$PROJECT_DIR$/rest-services-webapp/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hdfc-global-api-webapp</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="hdfc-global-api.war">
+      <element id="artifact" artifact-name="hdfc-global-api-webapp:war exploded" />
+    </root>
+  </artifact>
+</component>

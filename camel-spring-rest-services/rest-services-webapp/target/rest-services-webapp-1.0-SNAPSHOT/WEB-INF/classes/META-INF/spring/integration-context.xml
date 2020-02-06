@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+        <!-- refer to a given route to be used -->
+
+        <routeContextRef ref="service-route-login"/>
+
+        <onException>
+            <exception>java.lang.Exception</exception>
+            <setBody>
+                <constant>Internal server Error</constant>
+            </setBody>
+            <setHeader name="CamelHttpResponseCode">
+                <constant>500</constant>
+            </setHeader>
+        </onException>
+
+        <rest path="/login">
+            <get uri="/username">
+                <to uri="direct:login-api"/>
+            </get>
+        </rest>
+
+
+    </camelContext>
+</beans>
