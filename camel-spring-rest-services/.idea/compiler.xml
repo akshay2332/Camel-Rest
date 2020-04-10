@@ -6,13 +6,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="session-management" />
+        <module name="database-repositories" />
+        <module name="login-registration" />
         <module name="rest-services-webapp" />
+        <module name="audit-logging" />
+        <module name="user-login-register" />
+        <module name="beans-utility" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="audit-logging" target="1.8" />
+      <module name="beans-utility" target="1.8" />
+      <module name="camel-components" target="1.8" />
       <module name="camel-services-api" target="1.8" />
       <module name="camel-spring-rest-services" target="1.8" />
+      <module name="database-repositories" target="1.8" />
+      <module name="login-registration" target="1.8" />
       <module name="rest-services-webapp" target="1.8" />
+      <module name="session-management" target="1.8" />
+      <module name="user-login-register" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

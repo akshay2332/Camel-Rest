@@ -11,13 +11,18 @@
     <modules>
         <module>camel-services-api</module>
         <module>rest-services-webapp</module>
+        <module>camel-components</module>
     </modules>
 
-
     <properties>
-        <spring.version>5.2.3.RELEASE</spring.version>
-        <camel.version>3.0.0</camel.version>
+        <spring.version>5.2.5.RELEASE</spring.version>
+        <spring.security.version>5.3.1.RELEASE</spring.security.version>
+        <camel.version>3.0.0-RC2</camel.version>
         <restlet.version>2.3.4</restlet.version>
+        <spring.data.jpa.version>2.2.5.RELEASE</spring.data.jpa.version>
+        <hibernate.version>5.4.12.Final</hibernate.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -46,6 +51,19 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.data.jpa.version}</version>
+        </dependency>
+
 
         <!--camel jars-->
         <dependency>
@@ -53,6 +71,13 @@
             <artifactId>camel-core</artifactId>
             <version>${camel.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-main</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.camel</groupId>
@@ -66,6 +91,7 @@
             <version>${camel.version}</version>
         </dependency>
 
+
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-jackson</artifactId>
@@ -75,8 +101,8 @@
 
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-xmljson</artifactId>
-            <version>2.23.4</version>
+            <artifactId>camel-servlet</artifactId>
+            <version>${camel.version}</version>
         </dependency>
 
         <dependency>
@@ -84,18 +110,73 @@
             <artifactId>camel-http</artifactId>
             <version>${camel.version}</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-http4</artifactId>
+            <version>3.0.0-M4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.2.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+
+        <!-- JPA  -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <!-- Database Postgres -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.11.jre7</version>
+        </dependency>
+
+        <!--Log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.13.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+                <version>3.8.1</version>
             </plugin>
         </plugins>
     </build>

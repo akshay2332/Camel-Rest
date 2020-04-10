@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="rest-services-webapp-1.0-SNAPSHOT.war">
+    <root id="archive" name="camel-routes.war">
       <element id="artifact" artifact-name="rest-services-webapp:war exploded" />
     </root>
   </artifact>
