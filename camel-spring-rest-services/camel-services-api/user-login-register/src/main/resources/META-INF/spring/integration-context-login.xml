@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <routeContext id="user-routes-resolver" xmlns="http://camel.apache.org/schema/spring">
+
+        <route id="login">
+            <from uri="direct:login"/>
+            <marshal>
+                <json library="Jackson"/>
+            </marshal>
+            <unmarshal>
+                <json library="Jackson" unmarshalTypeName="registration.bean.UserReg"/>
+            </unmarshal>
+            <to uri="direct:check-authentication"/>
+            <to uri="direct:create-user-session"/>
+        </route>
+
+        <route id="register">
+            <from uri="direct:register"/>
+            <marshal>
+                <json library="Jackson"/>
+            </marshal>
+            <unmarshal>
+                <json library="Jackson" unmarshalTypeName="registration.bean.UserReg"/>
+            </unmarshal>
+            <to uri="direct:create-registration"/>
+        </route>
+
+        <route id="fetch-user-details">
+            <from uri="direct:fetch-user-details"/>
+            <to uri="direct:check-authentication"/>
+        </route>
+
+        <route id="update-user-details">
+            <from uri="direct:update-user-details"/>
+            <to uri="direct:check-authentication"/>
+        </route>
+
+        <route id="delete-user">
+            <from uri="direct:delete-user"/>
+            <to uri="direct:delete-user-registration"/>
+        </route>
+
+        <route id="logout">
+            <from uri="direct:logout"/>
+            <setBody>
+                <constant>Successful login</constant>
+            </setBody>
+        </route>
+    </routeContext>
+</beans>
