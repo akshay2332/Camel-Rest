@@ -4,7 +4,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>login-service</module>
+        <module>beans-utility</module>
+        <module>user-login-register</module>
     </modules>
 
     <parent>

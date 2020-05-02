@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-5.3.xsd">
+
+    <security:authentication-manager id="web-security-mobile">
+        <security:authentication-provider ref="loginMobileAuthenticationProvider">
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <bean id="basicMobileAuthEntryPoint"
+          class="org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint">
+        <property name="realmName" value="RESTRealm"/>
+    </bean>
+
+    <bean id="mobileAuthenticationFilter"
+          class="org.springframework.security.web.authentication.www.BasicAuthenticationFilter">
+        <constructor-arg name="authenticationManager" ref="web-security-mobile"/>
+        <constructor-arg name="authenticationEntryPoint" ref="basicMobileAuthEntryPoint"/>
+    </bean>
+
+
+    <security:http use-expressions="true" entry-point-ref="basicMobileAuthEntryPoint" pattern="/services/**"
+                   create-session="stateless">
+        <security:csrf disabled="true"/>
+        <security:form-login login-processing-url="/services/session/login" username-parameter="service_username"
+                             password-parameter="service_user_password"
+                             authentication-failure-handler-ref="customMobileAuthenticationFailureHandler"
+                             authentication-success-handler-ref="customMobileAuthenticationSuccessHandler"/>
+        <security:logout logout-url="/services/session/logout" invalidate-session="true"
+                         success-handler-ref="customMobileLogoutSuccessHandler"/>
+        <security:intercept-url pattern="/services/session/user" access="authenticated" method="GET"/>
+        <security:intercept-url pattern="/services/session/user" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/verify/email" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/users" access="permitAll"/>
+        <security:intercept-url pattern="/services/session/**" access="ROLE_USER"/>
+        <security:custom-filter ref="jwtRequestFilter" before="BASIC_AUTH_FILTER"/>
+        <security:custom-filter ref="mobileAuthenticationFilter" after="BASIC_AUTH_FILTER"/>
+    </security:http>
+
+    <bean id="loginMobileAuthenticationProvider" class="edu.stevens.mobile.provider.MobileLoginAuthenticationProvider">
+        <constructor-arg name="userDetailsService" ref="customUserDetailsService"/>
+    </bean>
+    <bean id="customMobileAuthenticationFailureHandler"
+          class="edu.stevens.mobile.session.handler.CustomMobileAuthenticationFailureHandler"/>
+    <bean id="customMobileAuthenticationSuccessHandler"
+          class="edu.stevens.mobile.session.handler.CustomMobileAuthenticationSuccessHandler"/>
+    <bean id="customMobileLogoutSuccessHandler"
+          class="edu.stevens.mobile.session.handler.CustomMobileLogoutSuccessHandler"/>
+
+    <bean id="customUserDetailsService" class="edu.stevens.mobile.session.service.CustomUserDetailsService"/>
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
+
+
+</beans>

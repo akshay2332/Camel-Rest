@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-5.3.xsd">
+
+    <security:http entry-point-ref="loginUrlAuthenticationEntryPoint" pattern="/" use-expressions="true">
+
+        <security:intercept-url pattern="/web/login-page.html" access="permitAll"/>
+        <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER')"/>
+        <security:custom-filter position="FORM_LOGIN_FILTER" ref="userAuthenticationProcessingFilter"/>
+        <security:logout logout-url='/logout'/>
+    </security:http>
+
+    <bean id="loginUrlAuthenticationEntryPoint"
+          class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <constructor-arg name="loginFormUrl" value="/web/login-page.html"/>
+    </bean>
+
+    <bean id="webSuccessHandler"
+          class="edu.stevens.web.session.handler.CustomWebAuthenticationSuccessHandler">
+        <property name="defaultTargetUrl" value="/web/index.html"/>
+    </bean>
+
+    <bean id="userAuthenticationProcessingFilter"
+          class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+        <property name="authenticationManager" ref="webAuthenticationManager"/>
+        <property name="authenticationFailureHandler"
+                  ref="webFailureHandler"/>
+        <property name="authenticationSuccessHandler"
+                  ref="webSuccessHandler"/>
+    </bean>
+
+    <bean id="webFailureHandler"
+          class="edu.stevens.web.session.handler.CustomWebAuthenticationFailureHandler">
+        <property name="exceptionMappings">
+            <map>
+                <entry
+                        key="org.springframework.security.authentication.BadCredentialsException"
+                        value="/login-page.html?errorMessage=bad.credentials"/>
+                <entry
+                        key="org.springframework.security.authentication.DisabledException"
+                        value="/login-page.html?errorMessage=disabled.user"/>
+            </map>
+        </property>
+    </bean>
+
+    <security:authentication-manager alias="webAuthenticationManager">
+        <security:authentication-provider ref="webAuthenticationProvider"/>
+    </security:authentication-manager>
+
+    <bean id="webAuthenticationProvider" class="edu.stevens.web.provider.WebLoginAuthenticationProvider"/>
+
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="sendMailResolver" class="edu.stevens.mail.service.SendMailResolver"/>
+
+    <routeContext id="audit-routes" xmlns="http://camel.apache.org/schema/spring">
+
+        <route id="send-mail">
+            <from uri="direct:send-mail"/>
+            <bean ref="sendMailResolver" method="resolveMailDetails"/>
+        </route>
+
+        <route id="verify-email-decrypt">
+            <from uri="direct:verify-email-decrypt"/>
+            <bean ref="sendMailResolver" method="decryptEmailRequest"/>
+            <to uri="direct:update-user-db-status"/>
+        </route>
+
+    </routeContext>
+</beans>

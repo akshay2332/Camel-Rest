@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+    <jee:jndi-lookup id="registrationDS" jndi-name="jdbc/registrationDS" expected-type="javax.sql.DataSource"/>
+
+
+    <jpa:repositories base-package="user.repositories"
+                      entity-manager-factory-ref="userEntityManagerFactory"
+                      transaction-manager-ref="userTransactionManager"
+    />
+
+    <tx:annotation-driven transaction-manager="userTransactionManager"/>
+
+    <bean id="userEntityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="packagesToScan" value="user.entities"/>
+        <property name="persistenceUnitName" value="postgresPU"/>
+        <property name="dataSource" ref="registrationDS"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="true"/>
+                <property name="showSql" value="false"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL81Dialect"/>
+            </bean>
+        </property>
+        <property name="jpaProperties">
+            <value>
+                hibernate.cache.use_second_level_cache = false
+                hibernate.cache.use_query_cache = false
+                hibernate.generate_statistics = false
+                hibernate.hbm2ddl.auto = update
+                hibernate.show_sql = true
+            </value>
+        </property>
+        <property name="persistenceUnitManager">
+            <bean class="org.springframework.data.jpa.support.MergingPersistenceUnitManager">
+                <property name="persistenceXmlLocations">
+                    <list>
+                        <value>classpath*:/META-INF/persistence.xml</value>
+                    </list>
+                </property>
+                <property name="defaultDataSource" ref="registrationDS"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager"
+          id="userTransactionManager">
+        <property name="entityManagerFactory" ref="userEntityManagerFactory"/>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+        <property name="dataSource" ref="registrationDS"/>
+    </bean>
+
+
+    <bean id="registrationDS" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://192.168.1.224:5432/registration"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="postgres"/>
+    </bean>
+
+    <!--Repository Registration -->
+    <bean id="userRepository" class="user.repositories.UserRepository"/>
+    <bean id="roleRepository" class="user.repositories.RoleRepository"/>
+
+</beans>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="checkMandatoryParams" class="registration.utility.CheckMandatoryParams"/>
+    <bean id="userRegistration" class="registration.UserRegistration"/>
+
+
+    <routeContext id="registration-routes" xmlns="http://camel.apache.org/schema/spring">
+
+        <route id="create-registration">
+            <from uri="direct:create-registration"/>
+            <to uri="direct:check-mandatory-parameters"/>
+        </route>
+
+        <route id="check-mandatory-parameters">
+            <from uri="direct:check-mandatory-parameters"/>
+            <setProperty name="tempBody">
+                <simple>${body}</simple>
+            </setProperty>
+            <choice>
+                <when>
+                    <simple>${exchangeProperty.tempBody.checkMandatoryParams}</simple>
+                    <removeProperty propertyName="tempBody"/>
+                    <throwException exceptionType="java.lang.IllegalArgumentException"/>
+                </when>
+                <otherwise>
+                    <removeProperty propertyName="tempBody"/>
+                    <to uri="direct:verify-userId-emailId-db-registration"/>
+                    <to uri="direct:fetch-user-role"/>
+                    <to uri="direct:create-user-database"/>
+                    <setProperty name="responseBody">
+                        <simple>${body}</simple>
+                    </setProperty>
+                    <setBody>
+                        <simple>${exchangeProperty.EMAIL_OBJECT}</simple>
+                    </setBody>
+                    <inOnly uri="direct:send-mail"/>
+                    <setBody>
+                        <simple>${exchangeProperty.responseBody}</simple>
+                    </setBody>
+                    <removeProperty propertyName="EMAIL_OBJECT"/>
+                    <removeProperty propertyName="responseBody"/>
+                </otherwise>
+            </choice>
+        </route>
+
+        <route id="check-registration">
+            <from uri="direct:check-registration"/>
+            <bean ref="userRegistration" method="retrieveRegistration"/>
+        </route>
+
+        <route id="delete-user-registration">
+            <from uri="direct:delete-user-registration"/>
+            <setBody>
+                <constant>Successful login</constant>
+            </setBody>
+        </route>
+
+
+    </routeContext>
+</beans>

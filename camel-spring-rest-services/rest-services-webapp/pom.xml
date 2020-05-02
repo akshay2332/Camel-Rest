@@ -14,59 +14,81 @@
     <packaging>war</packaging>
 
     <dependencies>
+
         <dependency>
             <groupId>edu.stevens.akshay</groupId>
-            <artifactId>login-service-api</artifactId>
+            <artifactId>beans-utility</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.stevens.akshay</groupId>
+            <artifactId>user-login-register</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.stevens.akshay</groupId>
+            <artifactId>login-registration</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.stevens.akshay</groupId>
+            <artifactId>database-repositories</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.stevens.akshay</groupId>
+            <artifactId>audit-logging</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.stevens.akshay</groupId>
+            <artifactId>session-management</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.stevens.akshay</groupId>
+            <artifactId>send-mail</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.stevens.akshay</groupId>
+            <artifactId>jwt-session</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>camel-routes</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
 
-    <profiles>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.26.v20200117</version>
+                <configuration>
+                    <webApp>
+                        <contextPath>/app</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
 
-        <profile>
-            <id>local-jetty-config</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-
-            <repositories>
-                <repository>
-                    <id>ojdbc-6</id>
-                    <url>https://mvnrepository.com/artifact/</url>
-                </repository>
-            </repositories>
-
-            <build>
-                <finalName>camel-rest-api</finalName>
-                <plugins>
-                    <plugin>
-
-                        <groupId>org.eclipse.jetty</groupId>
-                        <artifactId>jetty-maven-plugin</artifactId>
-                        <version>9.2.3.v20140905</version>
-                        <configuration>
-                            <jettyXml>${project.basedir}/src/main/jettyconfig/WEB-INF/jetty-env.xml</jettyXml>
-                            <webApp>
-                                <contextPath>/rest-services</contextPath>
-                            </webApp>
-                        </configuration>
-
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.mchange</groupId>
-                                <artifactId>c3p0</artifactId>
-                                <version>0.9.2.1</version>
-                                <scope>runtime</scope>
-                            </dependency>
-
-
-                        </dependencies>
-
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+        </plugins>
+    </build>
 
 </project>

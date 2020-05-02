@@ -1,31 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
+    <camelContext id="camel-context-integration" xmlns="http://camel.apache.org/schema/spring">
 
-    <camelContext xmlns="http://camel.apache.org/schema/spring">
-        <!-- refer to a given route to be used -->
+        <routeContextRef ref="login-routes"/>
+        <routeContextRef ref="user-routes-resolver"/>
+        <routeContextRef ref="session-management-routes"/>
+        <routeContextRef ref="registration-routes"/>
+        <routeContextRef ref="database-routes"/>
+        <routeContextRef ref="audit-routes"/>
+        <routeContextRef ref="jwt-session-routes"/>
 
-        <routeContextRef ref="service-route-login"/>
+        <restContextRef ref="rest-user-session"/>
+        <restContextRef ref="rest-users-registration"/>
+
+        <onException>
+            <exception>org.springframework.security.core.AuthenticationException</exception>
+            <handled>
+                <simple>true</simple>
+            </handled>
+            <log message="Handled here login" loggingLevel="ERROR"/>
+            <setHeader name="CamelHttpResponseCode">
+                <constant>401</constant>
+            </setHeader>
+        </onException>
 
         <onException>
             <exception>java.lang.Exception</exception>
+            <!--<handled>
+                <simple>true</simple>
+            </handled>
+            -->
             <setBody>
                 <constant>Internal server Error</constant>
             </setBody>
+            <log message="Handled here" loggingLevel="ERROR"/>
             <setHeader name="CamelHttpResponseCode">
                 <constant>500</constant>
             </setHeader>
         </onException>
 
-        <rest path="/login">
-            <get uri="/username">
-                <to uri="direct:login-api"/>
-            </get>
-        </rest>
 
+        <interceptFrom uri="rest*">
+            <bean ref="auditLogger" method="headerChecker"/>
+            <log message="interceptor" loggingLevel="DEBUG"/>
+        </interceptFrom>
+
+        <restConfiguration bindingMode="auto" component="servlet">
+            <endpointProperty key="servletName" value="RestServiceCamelServlet"/>
+        </restConfiguration>
 
     </camelContext>
+
 </beans>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <import resource="database-configuration.xml"/>
+
+    <routeContext id="database-routes" xmlns="http://camel.apache.org/schema/spring">
+
+        <route id="database">
+            <from uri="direct:database"/>
+            <setBody>
+                <constant>Successful login</constant>
+            </setBody>
+        </route>
+
+        <route id="verify-userId-emailId-db-registration">
+            <from uri="direct:verify-userId-emailId-db-registration"/>
+            <bean ref="userRepository" method="verifyUserIdEmailIdRegistration"/>
+        </route>
+
+        <route id="fetch-user-role">
+            <from uri="direct:fetch-user-role"/>
+            <bean ref="roleRepository" method="fetchUserRole"/>
+        </route>
+
+        <route id="create-user-database">
+            <from uri="direct:create-user-database"/>
+            <bean ref="userRepository" method="createUserRegistration"/>
+        </route>
+
+        <route id="check-authentication-db">
+            <from uri="direct:check-authentication-db"/>
+            <doTry>
+                <bean ref="userRepository" method="checkUserDbAuthentication"/>
+                <doCatch>
+                    <exception>javax.persistence.NoResultException</exception>
+                    <setBody>
+                        <simple>null</simple>
+                    </setBody>
+                    <throwException exceptionType="org.springframework.security.authentication.BadCredentialsException"
+                                    message="No User Found"/>
+                </doCatch>
+            </doTry>
+        </route>
+
+        <route id="update-user-db-status">
+            <from uri="direct:update-user-db-status"/>
+            <doTry>
+                <bean ref="userRepository" method="updateUserStatus"/>
+                <doCatch>
+                    <exception>javax.persistence.NoResultException</exception>
+                    <setBody>
+                        <simple>{"message":"No User Found"}</simple>
+                    </setBody>
+                    <throwException exceptionType="org.springframework.security.authentication.BadCredentialsException"
+                                    message="No User Found"/>
+                </doCatch>
+            </doTry>
+
+        </route>
+    </routeContext>
+</beans>
