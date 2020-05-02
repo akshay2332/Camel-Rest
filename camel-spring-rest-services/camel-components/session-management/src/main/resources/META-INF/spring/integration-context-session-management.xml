@@ -5,7 +5,8 @@
            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-    <bean id="sessionHelper" class="edu.stevens.session.utility.SessionHelper"/>
+    <import resource="security/spring-security-web.xml"/>
+    <import resource="security/spring-security-mobile.xml"/>
 
     <routeContext id="session-management-routes" xmlns="http://camel.apache.org/schema/spring">
 
@@ -16,5 +17,18 @@
                 <constant>Create Session</constant>
             </setBody>
         </route>
+
+        <route id="check-session">
+            <from uri="direct:check-session"/>
+            <bean ref="sessionHelper" method="checkUserSessionObject"/>
+            <setBody>
+                <constant>check Session</constant>
+            </setBody>
+        </route>
+
     </routeContext>
+
+
+    <bean id="sessionHelper" class="edu.stevens.mobile.utility.SessionHelper"/>
+
 </beans>

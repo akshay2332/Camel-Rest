@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <restContext id="rest-user-session" xmlns="http://camel.apache.org/schema/spring">
+
+        <rest path="/session/login">
+            <post id="login-user">
+                <to uri="direct:login"/>
+            </post>
+            <delete id="logout-user">
+                <to uri="direct:logout"/>
+            </delete>
+        </rest>
+
+        <rest path="/users" id="fetch-all-users">
+            <get>
+                <route>
+                    <setBody>
+                        <constant>All Users</constant>
+                    </setBody>
+                </route>
+            </get>
+        </rest>
+
+    </restContext>
+
+</beans>

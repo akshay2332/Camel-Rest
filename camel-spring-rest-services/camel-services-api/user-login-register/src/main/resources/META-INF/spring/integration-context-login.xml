@@ -5,18 +5,22 @@
            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
+    <import resource="rest-path/registration-path.xml"/>
+    <import resource="rest-path/login-path.xml"/>
+
     <routeContext id="user-routes-resolver" xmlns="http://camel.apache.org/schema/spring">
 
         <route id="login">
             <from uri="direct:login"/>
-            <marshal>
-                <json library="Jackson"/>
-            </marshal>
-            <unmarshal>
-                <json library="Jackson" unmarshalTypeName="registration.bean.UserReg"/>
-            </unmarshal>
-            <to uri="direct:check-authentication"/>
+            <to uri="direct:check-authentication-db"/>
+            <setProperty name="authResponse">
+                <simple>${body}</simple>
+            </setProperty>
             <to uri="direct:create-user-session"/>
+            <setBody>
+                <simple>${exchangeProperty.authResponse}</simple>
+            </setBody>
+            <removeProperty propertyName="authResponse"/>
         </route>
 
         <route id="register">
@@ -25,7 +29,7 @@
                 <json library="Jackson"/>
             </marshal>
             <unmarshal>
-                <json library="Jackson" unmarshalTypeName="registration.bean.UserReg"/>
+                <json library="Jackson" unmarshalTypeName="edu.stevens.registration.UserReg"/>
             </unmarshal>
             <to uri="direct:create-registration"/>
         </route>
@@ -48,8 +52,13 @@
         <route id="logout">
             <from uri="direct:logout"/>
             <setBody>
-                <constant>Successful login</constant>
+                <constant>Successful logout</constant>
             </setBody>
+        </route>
+
+        <route id="verify-email-id">
+            <from uri="direct:verify-email-id"/>
+            <to uri="direct:verify-email-decrypt"/>
         </route>
     </routeContext>
 </beans>

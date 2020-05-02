@@ -9,7 +9,7 @@
 
         <route id="check-authentication">
             <from uri="direct:check-authentication"/>
-            <to uri="direct:check-authentication-db"/>
+            <to uri="direct:check-session"/>
         </route>
 
         <route id="create-user-session">

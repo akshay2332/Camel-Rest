@@ -7,9 +7,12 @@
       <module fileurl="file://$PROJECT_DIR$/camel-components/camel-components.iml" filepath="$PROJECT_DIR$/camel-components/camel-components.iml" />
       <module fileurl="file://$PROJECT_DIR$/camel-services-api/camel-services-api.iml" filepath="$PROJECT_DIR$/camel-services-api/camel-services-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/camel-spring-rest-services.iml" filepath="$PROJECT_DIR$/camel-spring-rest-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camel-components/cryptography/cryptography.iml" filepath="$PROJECT_DIR$/camel-components/cryptography/cryptography.iml" />
       <module fileurl="file://$PROJECT_DIR$/camel-components/database-repositories/database-repositories.iml" filepath="$PROJECT_DIR$/camel-components/database-repositories/database-repositories.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camel-components/jwt-session/jwt-session.iml" filepath="$PROJECT_DIR$/camel-components/jwt-session/jwt-session.iml" />
       <module fileurl="file://$PROJECT_DIR$/camel-components/login-registration/login-registration.iml" filepath="$PROJECT_DIR$/camel-components/login-registration/login-registration.iml" />
       <module fileurl="file://$PROJECT_DIR$/rest-services-webapp/rest-services-webapp.iml" filepath="$PROJECT_DIR$/rest-services-webapp/rest-services-webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camel-components/send-mail/send-mail.iml" filepath="$PROJECT_DIR$/camel-components/send-mail/send-mail.iml" />
       <module fileurl="file://$PROJECT_DIR$/camel-components/session-management/session-management.iml" filepath="$PROJECT_DIR$/camel-components/session-management/session-management.iml" />
       <module fileurl="file://$PROJECT_DIR$/camel-services-api/user-login-register/user-login-register.iml" filepath="$PROJECT_DIR$/camel-services-api/user-login-register/user-login-register.iml" />
     </modules>

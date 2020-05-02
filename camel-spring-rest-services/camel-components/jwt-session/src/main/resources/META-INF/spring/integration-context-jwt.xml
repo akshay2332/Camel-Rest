@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="jwtTokenService" class="edu.stevens.jwt.JwtTokenService"/>
+    <bean id="jwtRequestFilter" class="edu.stevens.filter.JwtRequestValidator">
+        <property name="jwtTokeService" ref="jwtTokenService"/>
+        <property name="userDetailsService" ref="customUserDetailsService"/>
+    </bean>
+
+    <routeContext id="jwt-session-routes" xmlns="http://camel.apache.org/schema/spring">
+
+        <route id="jwt-create-token">
+            <from uri="direct:jwt-create-token"/>
+            <bean ref="jwtTokenService" method="generateToken(${body})"/>
+        </route>
+
+        <route id="jwt-validate-token">
+            <from uri="direct:jwt-validate-token"/>
+            <bean ref="jwtTokenService" method="validateToken"/>
+        </route>
+
+    </routeContext>
+</beans>

@@ -29,8 +29,21 @@
                 </when>
                 <otherwise>
                     <removeProperty propertyName="tempBody"/>
-                    <bean ref="userRegistration" method="retrieveRegistration"/>
+                    <to uri="direct:verify-userId-emailId-db-registration"/>
+                    <to uri="direct:fetch-user-role"/>
                     <to uri="direct:create-user-database"/>
+                    <setProperty name="responseBody">
+                        <simple>${body}</simple>
+                    </setProperty>
+                    <setBody>
+                        <simple>${exchangeProperty.EMAIL_OBJECT}</simple>
+                    </setBody>
+                    <inOnly uri="direct:send-mail"/>
+                    <setBody>
+                        <simple>${exchangeProperty.responseBody}</simple>
+                    </setBody>
+                    <removeProperty propertyName="EMAIL_OBJECT"/>
+                    <removeProperty propertyName="responseBody"/>
                 </otherwise>
             </choice>
         </route>
