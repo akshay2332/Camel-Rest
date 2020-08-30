@@ -3,3 +3,6 @@
 */target/*
 target/
 *.iml
+# file: ~/.gitignore_global
+.DS_Store
+.idea
