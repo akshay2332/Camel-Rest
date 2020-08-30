@@ -2,8 +2,31 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
-           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
+    <routeContext id="utility-routes" xmlns="http://camel.apache.org/schema/spring">
+        <route id="response-generator">
+            <from uri="direct:response-generator"/>
+            <log message="${body} entered the route response-generator" loggingLevel="DEBUG"/>
+            <marshal>
+                <json library="Jackson"/>
+            </marshal>
+            <log message="${body} covert body to json" loggingLevel="DEBUG"/>
+            <bean ref="auditLogger" method="responseChecker"/>
+            <log message="${body} after auditLogger" loggingLevel="DEBUG"/>
+            <convertBodyTo type="java.lang.String"/>
+            <log message="${body} left the response-generator" loggingLevel="DEBUG"/>
+
+        </route>
+
+        <route id="exception-resolver">
+            <from uri="direct:exception-resolver"/>
+            <bean ref="exceptionResolver" method="resolveException"/>
+        </route>
+
+    </routeContext>
     <bean id="auditLogger" class="edu.stevens.audit.AuditLogger"/>
+    <bean id="exceptionResolver" class="edu.stevens.customexceptions.resolver.ExceptionResolver"/>
 
 </beans>

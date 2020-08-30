@@ -1,0 +1,103 @@
+#header {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-gap: 1px;
+    background-image: url("../../images/header1.jpg");
+    background-size: 100% 100%;
+}
+
+#footer {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+
+#heading {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: center;
+    align-self: center;
+    font-size: xx-large;
+    color: white;
+}
+
+#displayBar {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 1px;
+}
+
+#displayBar1 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    text-align: center;
+    align-self: center;
+    font-size: large;
+    color: white;
+}
+
+#displayBar2 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1px;
+    color: white;
+    align-self: center;
+}
+
+#displayBar2>div{
+    color: white;
+    align-self: center;
+    text-align: center;
+
+}
+
+#bar1 {
+    grid-gap: 1px;
+}
+
+#bar2 {
+    grid-gap: 1px;
+}
+
+
+.fab {
+    font-size: 2rem;
+    size: 10px;
+
+}
+.fa-facebook{
+    color: blue;
+    background-color: white;
+}
+
+.fa-twitter{
+    background-color: cyan;
+}
+
+.fa-instagram{
+    background: #f09433;
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+}
+

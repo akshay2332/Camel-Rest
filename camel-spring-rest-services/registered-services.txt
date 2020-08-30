@@ -1,0 +1,12 @@
+http://localhost:8080/rest/services/users - GET - No session
+http://localhost:8080/rest/services/session/user - GET
+http://localhost:8080/rest/services/users - POST - Create a Session
+http://localhost:8080/rest/services/session/user - POST - No Session
+http://localhost:8080/rest/services/session/user - PUT
+http://localhost:8080/rest/services/session/user - DELETE
+http://localhost:8080/rest/services/verify/email - GET - No Session
+
+
+servlet:/session/user?httpMethodRestrict=POST&servletName=RestServiceCamelServlet
+servlet:/session/user
+avax.persistence.NoResultException: No entity found for query

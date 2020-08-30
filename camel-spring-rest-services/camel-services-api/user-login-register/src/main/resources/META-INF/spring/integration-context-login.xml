@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--suppress ALL -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
@@ -12,6 +13,10 @@
 
         <route id="login">
             <from uri="direct:login"/>
+            <unmarshal>
+                <json library="Jackson" unmarshalTypeName="edu.stevens.registration.model.RegistrationReq"
+                      enableFeatures="UNWRAP_ROOT_VALUE" dropRootNode="true"/>
+            </unmarshal>
             <to uri="direct:check-authentication-db"/>
             <setProperty name="authResponse">
                 <simple>${body}</simple>
@@ -25,13 +30,8 @@
 
         <route id="register">
             <from uri="direct:register"/>
-            <marshal>
-                <json library="Jackson"/>
-            </marshal>
-            <unmarshal>
-                <json library="Jackson" unmarshalTypeName="edu.stevens.registration.UserReg"/>
-            </unmarshal>
             <to uri="direct:create-registration"/>
+            <log message="${body} left the route register" loggingLevel="DEBUG"/>
         </route>
 
         <route id="fetch-user-details">
@@ -54,11 +54,15 @@
             <setBody>
                 <constant>Successful logout</constant>
             </setBody>
+            <to uri="direct:response-generator"/>
         </route>
 
         <route id="verify-email-id">
             <from uri="direct:verify-email-id"/>
             <to uri="direct:verify-email-decrypt"/>
+            <to uri="direct:response-generator"/>
         </route>
     </routeContext>
+
+    <bean id="registrationRequestAnalyzer" class="edu.stevens.registration.RegistrationRequestAnalyzer"/>
 </beans>

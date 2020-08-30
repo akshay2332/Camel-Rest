@@ -1,8 +1,7 @@
 package edu.stevens.filter;
 
 import edu.stevens.jwt.JwtTokenService;
-import edu.stevens.mobile.session.service.CustomUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import edu.stevens.mobile.session.service.CustomMobileUserDetailsService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,8 +16,8 @@ import java.io.IOException;
 
 public class JwtRequestValidator extends OncePerRequestFilter {
 
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
+
+    private CustomMobileUserDetailsService customMobileUserDetailsService;
 
     private JwtTokenService jwtTokeService;
 
@@ -37,7 +36,7 @@ public class JwtRequestValidator extends OncePerRequestFilter {
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = this.customMobileUserDetailsService.loadUserByUsername(username);
 
             if (jwtTokeService.validateToken(jwt, userDetails)) {
 
@@ -50,6 +49,9 @@ public class JwtRequestValidator extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(httpServletRequest, httpServletResponse);
+
+        System.out.println(httpServletResponse.getStatus());
+        System.out.println("BYE I AM DONE !!!!");
     }
 
 
@@ -57,7 +59,7 @@ public class JwtRequestValidator extends OncePerRequestFilter {
         this.jwtTokeService = jwtTokeService;
     }
 
-    public void setUserDetailsService(CustomUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    public void setCustomMobileUserDetailsService(CustomMobileUserDetailsService customMobileUserDetailsService) {
+        this.customMobileUserDetailsService = customMobileUserDetailsService;
     }
 }

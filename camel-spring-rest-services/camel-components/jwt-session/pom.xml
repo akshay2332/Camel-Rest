@@ -11,19 +11,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>jwt-session</artifactId>
+
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>5.3.1.RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>5.3.1.RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
+
         <dependency>
             <groupId>edu.stevens.akshay</groupId>
             <artifactId>session-management</artifactId>

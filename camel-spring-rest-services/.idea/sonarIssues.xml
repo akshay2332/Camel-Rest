@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="$PROJECT_DIR$/camel-components/database-repositories/src/main/java/user/repositories/UserRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/database-repositories/src/main/resources/META-INF/spring/database-configuration.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/database-repositories/src/main/resources/META-INF/spring/integration-context-database.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/jwt-session/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/jwt-session/src/main/java/edu/stevens/filter/JwtRequestValidator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/jwt-session/src/main/resources/META-INF/spring/integration-context-jwt.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/login-registration/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/login-registration/src/main/java/registration/helper/ResponseGenerator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/login-registration/src/main/java/registration/model/RegistrationReq.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/login-registration/src/main/java/registration/model/RegistrationResp.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/login-registration/src/main/java/registration/utility/CheckMandatoryParams.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/login-registration/src/main/resources/META-INF/spring/integration-context-registration.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/session-management/src/main/java/edu/stevens/mobile/provider/MobileLoginAuthenticationProvider.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/session-management/src/main/java/edu/stevens/mobile/session/service/CustomMobileUserDetailsService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/session-management/src/main/java/edu/stevens/mobile/session/service/CustomUserDetailsService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/session-management/src/main/java/edu/stevens/mobile/session/user/User.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-components/session-management/src/main/resources/META-INF/spring/security/spring-security-mobile.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/java/edu/stevens/audit/AuditLogger.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/java/edu/stevens/customexceptions/CustomException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/java/edu/stevens/customexceptions/EmailIdAlreadyExistsException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/java/edu/stevens/customexceptions/UserIdAlreadyExistsException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/java/edu/stevens/customexceptions/ValidationException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/java/edu/stevens/customexceptions/model/ExceptionResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/java/edu/stevens/customexceptions/resolver/ExceptionResolver.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/java/edu/stevens/registration/UserReg.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/java/edu/stevens/response/Response.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/beans-utility/src/main/resources/META-INF/spring/integration-context.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/user-login-register/src/main/java/edu/stevens/registration/RegistrationRequestAnalyzer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/user-login-register/src/main/resources/META-INF/spring/integration-context-login.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/camel-services-api/user-login-register/src/main/resources/META-INF/spring/rest-path/registration-path.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/registered-services.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/rest-services-webapp.iml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/resources/META-INF/spring/integration-context.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/css/login-style.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/css/login-style.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/css/login/login-style.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/css/registration/registration-page.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/css/utility/button-component.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/css/utility/header-footer.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/index.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/login-page.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/pages/registration/registration-page.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/registration/resgitration-page.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/login-page-constants.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/login-page-val.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/login/login-page-constants.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/login/login-page-val.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/project-constants.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/registration/registration-page-constants.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/registration/registration-page-val.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/utility/header-footer.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/utility/project-constants.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/utility/user-input-validator.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/rest-services-webapp/src/main/webapp/web/scripts/utility/utility.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

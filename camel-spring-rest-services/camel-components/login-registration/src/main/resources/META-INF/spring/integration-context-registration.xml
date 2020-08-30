@@ -13,7 +13,14 @@
 
         <route id="create-registration">
             <from uri="direct:create-registration"/>
+            <bean ref="registrationRequestAnalyzer" method="analyze"/>
+            <log message="Hi ${body} Json Bofy" loggingLevel="DEBUG"/>
+            <unmarshal>
+                <json library="Jackson" unmarshalTypeName="registration.model.RegistrationReq"
+                      enableFeatures="UNWRAP_ROOT_VALUE"/>
+            </unmarshal>
             <to uri="direct:check-mandatory-parameters"/>
+            <log message="${body} left the route create-registration" loggingLevel="DEBUG"/>
         </route>
 
         <route id="check-mandatory-parameters">
@@ -27,24 +34,25 @@
                     <removeProperty propertyName="tempBody"/>
                     <throwException exceptionType="java.lang.IllegalArgumentException"/>
                 </when>
-                <otherwise>
+                <when>
+                    <simple>"${exchangeProperty.tempBody.checkMandatoryParams} == 'false'"</simple>
                     <removeProperty propertyName="tempBody"/>
                     <to uri="direct:verify-userId-emailId-db-registration"/>
                     <to uri="direct:fetch-user-role"/>
                     <to uri="direct:create-user-database"/>
-                    <setProperty name="responseBody">
-                        <simple>${body}</simple>
-                    </setProperty>
                     <setBody>
                         <simple>${exchangeProperty.EMAIL_OBJECT}</simple>
                     </setBody>
                     <inOnly uri="direct:send-mail"/>
-                    <setBody>
-                        <simple>${exchangeProperty.responseBody}</simple>
-                    </setBody>
                     <removeProperty propertyName="EMAIL_OBJECT"/>
-                    <removeProperty propertyName="responseBody"/>
+                    <bean ref="responseGenerator" method="generateRegistrationSuccessResponse"/>
+                    <log message="${body} left the route check-mandatory-parameters" loggingLevel="DEBUG"/>
+                </when>
+                <!--
+                <otherwise>
+
                 </otherwise>
+                -->
             </choice>
         </route>
 
@@ -60,6 +68,7 @@
             </setBody>
         </route>
 
-
     </routeContext>
+
+    <bean id="responseGenerator" class="registration.helper.ResponseGenerator"/>
 </beans>

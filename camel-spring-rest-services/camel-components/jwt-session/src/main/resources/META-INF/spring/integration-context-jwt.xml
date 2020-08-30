@@ -8,7 +8,7 @@
     <bean id="jwtTokenService" class="edu.stevens.jwt.JwtTokenService"/>
     <bean id="jwtRequestFilter" class="edu.stevens.filter.JwtRequestValidator">
         <property name="jwtTokeService" ref="jwtTokenService"/>
-        <property name="userDetailsService" ref="customUserDetailsService"/>
+        <property name="customMobileUserDetailsService" ref="customMobileUserDetailsService"/>
     </bean>
 
     <routeContext id="jwt-session-routes" xmlns="http://camel.apache.org/schema/spring">

@@ -1,6 +1,6 @@
 package edu.stevens.mobile.provider;
 
-import edu.stevens.mobile.session.service.CustomUserDetailsService;
+import edu.stevens.mobile.session.service.CustomMobileUserDetailsService;
 import edu.stevens.mobile.session.user.UserInfo;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.ProducerTemplate;
@@ -21,10 +21,10 @@ public class MobileLoginAuthenticationProvider implements AuthenticationProvider
     @EndpointInject(value = "direct:jwt-create-token")
     private ProducerTemplate tokenProducerTemplate;
 
-    private CustomUserDetailsService userDetailsService;
+    private CustomMobileUserDetailsService customMobileUserDetailsService;
 
-    public MobileLoginAuthenticationProvider(CustomUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    public MobileLoginAuthenticationProvider(CustomMobileUserDetailsService customMobileUserDetailsService) {
+        this.customMobileUserDetailsService = customMobileUserDetailsService;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class MobileLoginAuthenticationProvider implements AuthenticationProvider
             LOGGER.debug("Enterd hered");
             LOGGER.debug("Username | {}", authentication.getName());
 
-            UserInfo userInfo = userDetailsService.loadUserByUsername(authentication.getName());
+            UserInfo userInfo = customMobileUserDetailsService.loadUserByUsername(authentication.getName());
             LOGGER.debug("UserInfo !!! | {}",userInfo);
             if (userInfo.getPassword().equals(authentication.getCredentials().toString())) {
                 String token = tokenProducerTemplate.requestBody(userInfo, String.class);
