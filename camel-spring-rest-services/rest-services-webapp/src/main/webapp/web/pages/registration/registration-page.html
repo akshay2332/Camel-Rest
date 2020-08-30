@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <link href="../../css/utility/header-footer.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/utility/button-component.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/registration/registration-page.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2edc4f11f8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div id="header">
+</div>
+
+<registration-page>
+
+    <reg-form>
+
+        <!-- Last Name -->
+        <div class="label last-name-label" id="lastNameLabel">
+            <span class="labelContent">Last Name:</span>
+        </div>
+        <last-name-input>
+            <input type="text" id="lastName" class="displayErrorLabel" placeholder="Enter the Last Name"/>
+        </last-name-input>
+
+        <div class="box last-name-error displayErrorLabel">
+            <span id="lastNameErMsg" class="labelContent">Last Name error message</span>
+        </div>
+
+        <!-- First Name -->
+        <div class="right-label first-name-label" id="firstNameLabel">
+            <span class="labelContent">First Name:</span>
+        </div>
+        <first-name-input>
+            <input type="text" id="firstName" class="displayErrorLabel" placeholder="Enter the First Name"/>
+        </first-name-input>
+        <div class="first-name-error displayErrorLabel">
+            <span id="firstNameErMsg" class="labelContent">First Name error message</span>
+        </div>
+
+        <!-- User Name -->
+        <div class="label reg-username-label" id="userNameLabel">
+            <span class="labelContent">User Name:</span>
+        </div>
+        <reg-username-input>
+            <input type="text" id="userName" class="displayErrorLabel" placeholder="Enter the User Name"/>
+        </reg-username-input>
+
+        <div class="box reg-username-error displayErrorLabel">
+            <span id="userNameErMsg" class="labelContent">User Name error message</span>
+        </div>
+
+        <!-- Password -->
+
+        <div class="label reg-password-label" id="regPassLabel">
+            <span class="labelContent">Password:</span>
+        </div>
+
+        <reg-password-input>
+            <input type="password" id="password" class="displayErrorLabel" placeholder="Enter the Password"/>
+        </reg-password-input>
+
+        <div class="box reg-password-error displayErrorLabel">
+            <span id="passwordErMsg" class="labelContent">Password error message</span>
+        </div>
+
+        <!--Confirm Password -->
+
+        <div class="right-label conf-reg-password-label" id="regConfPassLabel">
+            <span class="labelContent">Confirm Password:</span>
+        </div>
+
+        <conf-reg-password-input>
+            <input type="password" id="confPassword" class="displayErrorLabel" placeholder="Re-enter the Password"
+                   disabled/>
+        </conf-reg-password-input>
+
+        <div class="conf-reg-password-error displayErrorLabel">
+            <span id="confPasswordErMsg" class="labelContent">Conf Password error message</span>
+        </div>
+
+
+        <!-- Email id -->
+
+        <div class="right-label email-id-label" id="emailIdLabel">
+            <span class="labelContent">Email Id:</span>
+        </div>
+        <email-id-input>
+            <input type="text" class="displayErrorLabel" id="emailId" placeholder="Enter EmailId"/>
+        </email-id-input>
+        <div class="email-id-error displayErrorLabel">
+            <span id="emailIdErMsg" class="labelContent">Email Id error message</span>
+        </div>
+
+        <!-- Mobile No -->
+
+        <div class="label mobile-no-label" id="mobileNoLabel">
+            <span class="labelContent">Mobile No:</span>
+        </div>
+        <mobile-no-input>
+            <input type="text" class="displayErrorLabel" id="mobileNo" placeholder="Enter Mobile No"/>
+        </mobile-no-input>
+        <div class="box mobile-no-error displayErrorLabel">
+            <span id="mobileNoErMsg" class="labelContent">Mobile No error message</span>
+        </div>
+
+    </reg-form>
+
+    <reg-status>
+        <reg-buton class="button">
+            <button id="confirm">Confirm</button>
+            <button id="registerBtn">Register</button>
+        </reg-buton>
+        <reg-msg>
+            <span id="regServiceMsg" class="labelContent">Service error message</span>
+        </reg-msg>
+    </reg-status>
+
+</registration-page>
+
+<div id="footer">
+</div>
+<script src="../../scripts/utility/utility.js"></script>
+<script src="../../scripts/utility/project-constants.js"></script>
+<script src="../../scripts/utility/user-input-validator.js"></script>
+<script src="../../scripts/utility/header-footer.js"></script>
+<script src="../../scripts/registration/registration-page-val.js"></script>
+<script src="../../scripts/registration/registration-page-constants.js"></script>
+</body>
+</html>

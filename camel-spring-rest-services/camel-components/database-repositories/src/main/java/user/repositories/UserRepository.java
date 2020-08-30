@@ -4,6 +4,7 @@ import edu.stevens.constants.ApplicationConstants;
 import edu.stevens.customexceptions.EmailIdAlreadyExistsException;
 import edu.stevens.customexceptions.UserIdAlreadyExistsException;
 import edu.stevens.mobile.session.user.UserInfo;
+import edu.stevens.response.Response;
 import org.apache.camel.Exchange;
 import org.apache.camel.util.json.JsonObject;
 import org.slf4j.Logger;
@@ -12,7 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.stevens.registration.UserReg;
+import registration.model.RegistrationReq;
 import user.entities.Authorities;
 import user.entities.Users;
 
@@ -35,7 +36,7 @@ public class UserRepository {
 
     @Transactional
     public void verifyUserIdEmailIdRegistration(Exchange exchange) throws UserIdAlreadyExistsException {
-        UserReg userReg = exchange.getIn().getBody(UserReg.class);
+        RegistrationReq userReg = exchange.getIn().getBody(RegistrationReq.class);
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Users> usersCriteriaQuery = criteriaBuilder.createQuery(Users.class);
@@ -53,19 +54,24 @@ public class UserRepository {
                 userReg.getUserId()).setParameter(emailIdParameter, userReg.getEmailId()).getResultList();
 
         if (usersExist.size() != 0) {
+            Response response = new Response();
+            response.setReturnCode(2);
+            response.setErrorCode(2);
             if (userReg.getUserId().equalsIgnoreCase(usersExist.get(0).getUserId())) {
-                throw new UserIdAlreadyExistsException(String.format(ApplicationConstants.USER_ID_EXISTS_ERROR_MESSAGE, userReg.getUserId()));
+                response.setMessage(String.format(ApplicationConstants.USER_ID_EXISTS_ERROR_MESSAGE, userReg.getUserId()));
+                throw new UserIdAlreadyExistsException(response);
             } else {
-                throw new EmailIdAlreadyExistsException(String.format(ApplicationConstants.EMAIL_ID_EXISTS_ERROR_MESSAGE, userReg.getEmailId()));
+                response.setMessage(String.format(ApplicationConstants.EMAIL_ID_EXISTS_ERROR_MESSAGE, userReg.getUserId()));
+                throw new EmailIdAlreadyExistsException(response);
             }
         }
 
-        exchange.getIn().setBody(userReg, UserReg.class);
+        exchange.getIn().setBody(userReg, RegistrationReq.class);
     }
 
     @Transactional
     public void createUserRegistration(Exchange exchange) {
-        UserReg userReg = exchange.getIn().getBody(UserReg.class);
+        RegistrationReq userReg = exchange.getIn().getBody(RegistrationReq.class);
         Authorities userAuthorities = exchange.getProperty(ApplicationConstants.AUTHORITIES_OBJECT, Authorities.class);
 
         Users user = new Users();
@@ -79,15 +85,13 @@ public class UserRepository {
 
         entityManager.persist(user);
         exchange.setProperty(ApplicationConstants.EMAIL_OBJECT, userReg.getEmailId());
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.put("message", "Registration Successful");
-        exchange.getIn().setBody(jsonObject);
+
     }
 
     @Transactional
     public void checkUserDbAuthentication(Exchange exchange) {
 
-        UserReg userReg = exchange.getIn().getBody(UserReg.class);
+        RegistrationReq userReg = exchange.getIn().getBody(RegistrationReq.class);
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Users> usersCriteriaQuery = criteriaBuilder.createQuery(Users.class);

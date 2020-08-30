@@ -1,0 +1,258 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 15% 75% 10%;
+    grid-gap: 1px;
+    font-family: 'Neucha', cursive;
+    background-color: #cc2366;
+}
+
+registration-page {
+    display: grid;
+    grid-template-rows: 12fr 2fr;
+    margin: 0.1% 5% 0.1%;
+    padding: 1%;
+    background-color: darkcyan;
+    opacity: 0.7;
+}
+
+reg-form {
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    background-color: darkcyan
+}
+
+reg-status {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+reg-buton {
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+
+reg-msg {
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    grid-row-start: 8;
+    grid-row-end: 9;
+}
+
+.label {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-label {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.last-name-label {
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+last-name-input {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.last-name-error {
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+#lastNameErMsg {
+    display: none;
+}
+
+#firstNameErMsg {
+    display: none;
+}
+
+#userNameErMsg {
+    display: none;
+}
+
+#emailIdErMsg {
+    display: none;
+}
+
+#mobileNoErMsg {
+    display: none;
+}
+
+#passwordErMsg {
+    display: none;
+}
+
+#confPasswordErMsg {
+    display: none;
+}
+
+#regServiceMsg {
+    display: none;
+}
+
+
+.first-name-label {
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+first-name-input {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+.first-name-error {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+
+.reg-username-label {
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+reg-username-input {
+    grid-row-start: 5;
+    grid-row-end: 6;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.reg-username-error {
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+.email-id-label {
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+email-id-input {
+    grid-row-start: 5;
+    grid-row-end: 6;
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+.email-id-error {
+    grid-row-start: 6;
+    grid-row-end: 7;
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+
+.reg-password-label {
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+
+reg-password-input {
+    grid-row-start: 8;
+    grid-row-end: 9;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.reg-password-error {
+    grid-row-start: 9;
+    grid-row-end: 10;
+}
+
+.conf-reg-password-label {
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+
+conf-reg-password-input {
+    grid-row-start: 8;
+    grid-row-end: 9;
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+.conf-reg-password-error {
+    grid-row-start: 9;
+    grid-row-end: 10;
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+
+.mobile-no-label {
+    grid-row-start: 10;
+    grid-row-end: 11;
+}
+
+mobile-no-input {
+    grid-row-start: 11;
+    grid-row-end: 12;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.mobile-no-error {
+    grid-row-start: 12;
+    grid-row-end: 13;
+}
+
+reg-buton {
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+reg-msg {
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    font-size: x-large;
+}
+
+.displayErrorLabel {
+    width: 65%;
+    padding: 6px 4px;
+    box-sizing: border-box;
+    margin-left: 10%;
+    margin-right: 20%;
+}

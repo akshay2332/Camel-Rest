@@ -1,22 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Login Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>My Application</title>
+    <link href="css/utility/header-footer.css" rel="stylesheet" type="text/css"/>
+    <link href="css/utility/button-component.css" rel="stylesheet" type="text/css"/>
+    <link href="css/login/login-style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2edc4f11f8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<center>
-    <form action="">
-        <label>User Id</label>
-        <input type="text"/>
-        <br>
-        <label>Password</label>
-        <input type="password"/>
-        <br>
-        <input type="submit" value="Login">
-    </form>
-
-</center>
+<div id="header">
+</div>
+<main>
+    <div class="" id="background">
+        Background
+    </div>
+    <div class="loginForm">
+        <div id="loginForm">
+            <div class="label" id="userNameLabel">
+                <span class="labelContent">User Name:</span>
+            </div>
+            <div class="box" id="ubox">
+                <input type="text" id="userName" placeholder="Enter the Username"/>
+            </div>
+            <div class="box">
+                <span id="userNameErMsg" class="labelContent">User Name error message</span>
+            </div>
+            <div class="label" id="pwdLabel">
+                <span class="labelContent">Password:</span>
+            </div>
+            <div class="box" id="pbox">
+                <span><input type="password" id="pwd" placeholder="Enter the Password" size="16"/></span>
+            </div>
+            <div class="box">
+                <span class="labelContent" id="pwdErMsg">Password error message</span>
+            </div>
+            <div class="box button lgnBtn">
+                <button id="loginBtn">Login</button>
+            </div>
+            <div class="box button regBtn">
+                <button id="registerBtn">Register</button>
+            </div>
+            <div class="box">
+                <span class="labelContent" id="loginErMsg">Login Error Message</span>
+            </div>
+        </div>
+    </div>
+</main>
+<div id="footer">
+</div>
+<script src="scripts/utility/project-constants.js"></script>
+<script src="scripts/utility/utility.js"></script>
+<script src="scripts/utility/user-input-validator.js"></script>
+<script src="scripts/utility/header-footer.js"></script>
+<script src="scripts/login/login-page-val.js"></script>
+<script src="scripts/login/login-page-constants.js"></script>
 
 </body>
 </html>

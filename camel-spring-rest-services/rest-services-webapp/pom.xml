@@ -83,7 +83,7 @@
                 <version>9.4.26.v20200117</version>
                 <configuration>
                     <webApp>
-                        <contextPath>/app</contextPath>
+                        <contextPath>/myapplication</contextPath>
                     </webApp>
                 </configuration>
             </plugin>

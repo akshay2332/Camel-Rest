@@ -1,8 +1,10 @@
 package edu.stevens.customexceptions;
 
-public class EmailIdAlreadyExistsException extends RuntimeException {
+import edu.stevens.response.Response;
 
-    public EmailIdAlreadyExistsException(String message) {
+public class EmailIdAlreadyExistsException extends ValidationException {
+
+    public EmailIdAlreadyExistsException(Response message) {
         super(message);
     }
 }

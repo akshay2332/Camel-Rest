@@ -16,9 +16,9 @@
     </modules>
 
     <properties>
-        <spring.version>5.2.5.RELEASE</spring.version>
+        <spring.version>5.2.8.RELEASE</spring.version>
         <spring.security.version>5.3.1.RELEASE</spring.security.version>
-        <camel.version>3.0.0-RC2</camel.version>
+        <camel.version>3.4.3</camel.version>
         <restlet.version>2.3.4</restlet.version>
         <spring.data.jpa.version>2.2.5.RELEASE</spring.data.jpa.version>
         <hibernate.version>5.4.12.Final</hibernate.version>
@@ -116,13 +116,13 @@
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-core</artifactId>
-            <version>2.3.0.1</version>
+            <version>3.0.0-M4</version>
         </dependency>
 
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>2.3.2</version>
+            <version>3.0.0-M4</version>
         </dependency>
 
         <!-- JPA  -->
