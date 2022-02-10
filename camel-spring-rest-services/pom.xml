@@ -21,7 +21,7 @@
         <camel.version>3.4.3</camel.version>
         <restlet.version>2.3.4</restlet.version>
         <spring.data.jpa.version>2.2.5.RELEASE</spring.data.jpa.version>
-        <hibernate.version>5.4.12.Final</hibernate.version>
+        <hibernate.version>5.4.24.Final</hibernate.version>
         <logger.version>2.13.1</logger.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
